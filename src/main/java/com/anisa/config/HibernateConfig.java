@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-//@EnableTransactionManagement
+@EnableTransactionManagement
 @PropertySource("classpath:properties-hibernate.properties")
 public class HibernateConfig {
 

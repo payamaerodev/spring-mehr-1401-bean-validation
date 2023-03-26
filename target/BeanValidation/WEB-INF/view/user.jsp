@@ -24,5 +24,7 @@
 <%--    <form:errors path="couponCode" cssClass="error"/><br>--%>
 <%--    <input type="submit" value="send">--%>
 <%--</form:form>--%>
+
+${payam}
 </body>
 </html>

@@ -30,7 +30,7 @@ public class ProductController {
     public SessionFactory sessionFactory;
 
     @GetMapping("user")
-//    @Transactional
+    @Transactional
     public ModelAndView getUser(@RequestParam("id") String id) {
         User user = sessionFactory.getCurrentSession().find(User.class, id);
 //        model.addAttribute(user);
@@ -65,6 +65,4 @@ public class ProductController {
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
-
-
 }

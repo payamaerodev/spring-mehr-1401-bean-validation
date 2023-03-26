@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @ControllerAdvice
 @RequestMapping("/advice")
@@ -21,6 +22,12 @@ public class AdviceProductController {
 
     @Autowired
     public SessionFactory sessionFactory;
+
+    @ModelAttribute("payam")
+    public List<String> modelAttribute() {
+        return List.of("TENNIS,FOOTBALL");
+    }
+
 
     @GetMapping("user")
 //    @Transactional
@@ -33,8 +40,8 @@ public class AdviceProductController {
     }
 
     @ExceptionHandler(Exception.class)
-    public String exceptionHandler(Exception ex,Model model) {
-        model.addAttribute("message",ex.getMessage());
+    public String exceptionHandler(Exception ex, Model model) {
+        model.addAttribute("message", ex.getMessage());
         return "exception";
     }
 

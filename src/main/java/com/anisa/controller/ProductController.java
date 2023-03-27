@@ -1,5 +1,6 @@
 package com.anisa.controller;
 
+import com.anisa.config.Validator;
 import com.anisa.entity.Product;
 
 import com.anisa.entity.User;
@@ -13,6 +14,8 @@ import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +31,8 @@ public class ProductController {
 
     @Autowired
     public SessionFactory sessionFactory;
+    @Autowired
+    private Validator validator;
 
     @GetMapping("user")
     @Transactional
@@ -54,15 +59,25 @@ public class ProductController {
         else return "product-ok";
     }
 
+    //add product
+    @PostMapping(value = "/processForm1")
+    public String processWithValidation(@Valid @ModelAttribute("product")  Product product, BindingResult bindingResult) {
+        System.out.println("Binding Result is" + bindingResult);
+        System.out.println(product.getPrice());
+        if (bindingResult.hasErrors()) return "product";
+        else return "product-ok";
+    }
+
     @PostMapping("/exc")
     public void exception() throws Exception {
 //        throw new Exception(ResourceBundle.getBundle("messages").getString("error.message")) ;
-        throw new Exception(ResourceBundle.getBundle("messages").getString("error.message")) ;
+        throw new Exception(ResourceBundle.getBundle("messages").getString("error.message"));
     }
 
     @InitBinder
-    public void initBinder(@NotNull WebDataBinder dataBinder) {
-        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    public void initBinder(WebDataBinder dataBinder) {
+//        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.setValidator(validator);
+//        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 }

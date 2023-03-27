@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form:form action="processForm" method="post" modelAttribute="product">
+<form:form action="processForm1" method="post" modelAttribute="product">
 <%--    id : <form:input path="id" /><br>--%>
 <%--    name : <form:input path="name" />--%>
 <%--    <form:errors path="name" cssClass="error"/><br>--%>
@@ -19,9 +19,9 @@
 <%--     price : <form:input path="price" />--%>
 <%--    <form:errors path="price" cssClass="error"/><br>--%>
 <%--    regx : <form:input path="regx" />--%>
-    price : <form:input path="format" />
+    price : <form:input path="price" />
 <h1><spring:message code="welcome.title" text="Welcome" /></h1>
-    <form:errors path="format" cssClass="error"/><br>
+    <form:errors path="price" cssClass="error"/><br>
     <input type="submit" value="send">
 </form:form>
 </body>

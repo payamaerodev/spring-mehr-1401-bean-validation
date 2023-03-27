@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
 //    private Long id;
@@ -35,6 +36,7 @@ public class Product {
 //    @CouponCode(value = "takhfif", message = "bayad ba takhfif shoro beshe")
 //    private String couponCode;
 
+    private String price;
 
     //Custom validation
     @CheckFormat(value = "f", message = "bayad ba takhfif shoro beshe")
